@@ -1,6 +1,8 @@
 package com.ly.supermvp.view.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +15,8 @@ import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.SectionsPagerAdapter;
 import com.ly.supermvp.delegate.MainActivityDelegate;
 import com.ly.supermvp.mvp_frame.presenter.ActivityPresenter;
+import com.ly.supermvp.utils.WriteLogUtil;
+import com.orhanobut.logger.Logger;
 
 /**
  * <Pre>
@@ -68,6 +72,7 @@ public class MainActivity extends ActivityPresenter<MainActivityDelegate> implem
 //            }
 //        });
     }
+
 
     @Override
     protected void onDestroy() {
