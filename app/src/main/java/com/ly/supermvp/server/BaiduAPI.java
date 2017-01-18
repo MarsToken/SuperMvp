@@ -1,12 +1,10 @@
 package com.ly.supermvp.server;
 
 import com.ly.supermvp.common.BizInterface;
-import com.ly.supermvp.model.news.ShowApiNews;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.pictures.ShowApiPictures;
 import com.ly.supermvp.model.weather.ShowApiWeather;
 
-import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.Headers;
@@ -15,7 +13,7 @@ import rx.Observable;
 
 /**
  * <Pre>
- *     易源api
+ *     百度api
  * </Pre>
  *
  * @author 刘阳
@@ -23,22 +21,7 @@ import rx.Observable;
  *          <p/>
  *          Create by 2016/1/27 15:22
  */
-public interface ShowApi {
-    /**
-     * 新闻列表
-     * @param cacheControl
-     * @param page
-     * @param channelId
-     * @param channelName
-     * @return
-     */
-    @GET(BizInterface.NEWS_URL)
-    @Headers("apikey: " + BizInterface.API_KEY)
-    Call<ShowApiResponse<ShowApiNews>> getNewsList(@Header("Cache-Control") String cacheControl,
-                                  @Query("page") int page,
-                                  @Query("channelId") String channelId,//新闻频道id，必须精确匹配
-                                  @Query("channelName") String channelName);//新闻频道名称，可模糊匹配
-
+public interface BaiduAPI {
     /**
      * 天气预报响应
      * @param area 地区名称，比如北京

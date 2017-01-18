@@ -1,5 +1,6 @@
 package com.ly.supermvp.model.news;
 
+import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
@@ -28,8 +29,9 @@ public class NewsModelImpl implements NewsModel {
     public void netLoadNewsList(int page, String channelId, String channelName, final OnNetRequestListener listListener) {
         //注意，此处采用Retrofit的官方响应方式，天气预报采用RxJava，学习一下两种用法
         Call<ShowApiResponse<ShowApiNews>> call = RetrofitService.getInstance()
-                .createShowApi()
-                .getNewsList(RetrofitService.getCacheControl(), page, CHANNEL_ID, CHANNEL_NAME);
+                .createShowAPI()
+                .getNewsList(RetrofitService.getCacheControl(), BizInterface.SHOW_API_APPID,
+                        BizInterface.SHOW_API_KEY, page, channelId, channelName);
 
         call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override

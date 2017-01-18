@@ -26,7 +26,7 @@ public class PicturesModelImpl implements PicturesModel{
     @Override
     public void netLoadPictures(String type, int page, final OnNetRequestListener<List<PictureBody>> listener) {
         Observable<ShowApiResponse<ShowApiPictures>> observable = RetrofitService.getInstance().
-                createShowApi().getPictures(RetrofitService.getCacheControl(), type, page);
+                createBaiduAPI().getPictures(RetrofitService.getCacheControl(), type, page);
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

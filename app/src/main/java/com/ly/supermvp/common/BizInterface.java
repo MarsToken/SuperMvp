@@ -16,14 +16,27 @@ public interface BizInterface {
      */
     String API = "http://apis.baidu.com";
     /**
-     * 开发者API密钥
+     * 易源API接口（官方）
+     */
+    String SHOW_API = "http://route.showapi.com";
+    /**
+     * 百度开发者API密钥
      */
     String API_KEY = "4720bdbcfb3aa457eefd38d2f8fa580f";
+    /**
+     * 易源api密钥
+     */
+    String SHOW_API_KEY = "ae06b1ecff2847dba442b9433032f489";
+    /**
+     * 易源appid
+     */
+    String SHOW_API_APPID = "31108";
+
     /**
      * 新闻接口
      服务商： 易源接口
      */
-    String NEWS_URL = "/showapi_open_bus/channel_news/search_news";
+    String NEWS_URL = "/109-35";
     /**
      * 天气预报 (根据地名)
      服务商： 易源接口

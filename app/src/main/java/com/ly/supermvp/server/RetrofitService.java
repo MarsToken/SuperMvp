@@ -58,23 +58,46 @@ public class RetrofitService {
         return instance;
     }
 
-    private volatile static ShowApi showApi = null;
-
-    public static ShowApi createShowApi() {
-        if (showApi == null) {
+    /**
+     * 百度api
+     */
+    private volatile static BaiduAPI baiduAPI = null;
+    public static BaiduAPI createBaiduAPI() {
+        if (baiduAPI == null) {
             synchronized (RetrofitService.class) {
-                if (showApi == null) {
+                if (baiduAPI == null) {
                     initOkHttpClient();
-                    showApi = new Retrofit.Builder()
+                    baiduAPI = new Retrofit.Builder()
                             .client(mOkHttpClient)
                             .baseUrl(BizInterface.API)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .build().create(ShowApi.class);
+                            .build().create(BaiduAPI.class);
                 }
             }
         }
-        return showApi;
+        return baiduAPI;
+    }
+
+    /**
+     * 易源api
+     */
+    private volatile static ShowAPI showAPI = null;
+    public static ShowAPI createShowAPI() {
+        if (showAPI == null) {
+            synchronized (RetrofitService.class) {
+                if (showAPI == null) {
+                    initOkHttpClient();
+                    showAPI = new Retrofit.Builder()
+                            .client(mOkHttpClient)
+                            .baseUrl(BizInterface.SHOW_API)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .build().create(ShowAPI.class);
+                }
+            }
+        }
+        return showAPI;
     }
 
     // 配置OkHttpClient
