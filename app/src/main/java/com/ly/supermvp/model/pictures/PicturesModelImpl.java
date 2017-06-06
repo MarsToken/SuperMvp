@@ -50,7 +50,7 @@ public class PicturesModelImpl implements PicturesModel{
 
                     @Override
                     public void onNext(ShowApiResponse<ShowApiPictures> showApiPicturesShowApiResponse) {
-                        if (showApiPicturesShowApiResponse.showapi_res_body != null) {
+                        if (showApiPicturesShowApiResponse.showapi_res_body != null &&showApiPicturesShowApiResponse.showapi_res_code == "0") {
                             listener.onSuccess(showApiPicturesShowApiResponse.showapi_res_body.pagebean.contentlist);
                         } else {
                             listener.onFailure(new Exception());

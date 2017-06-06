@@ -36,9 +36,9 @@ public class NewsModelImpl implements NewsModel {
         call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override
             public void onResponse(Response<ShowApiResponse<ShowApiNews>> response, Retrofit retrofit) {
-                if (response.body() != null) {
-                    Logger.d(response.message() + response.code() + response.body().showapi_res_code
-                            + response.body().showapi_res_error);
+                Logger.d(response.message() + response.code() + response.body().showapi_res_code
+                        + response.body().showapi_res_error);
+                if (response.body() != null && response.body().showapi_res_code == "0") {
                     listListener.onSuccess(response.body().showapi_res_body.pagebean.contentlist);
                 } else {
                     listListener.onFailure(new Exception());
