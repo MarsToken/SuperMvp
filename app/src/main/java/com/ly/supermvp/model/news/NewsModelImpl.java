@@ -1,5 +1,7 @@
 package com.ly.supermvp.model.news;
 
+import android.text.TextUtils;
+
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiResponse;
@@ -38,7 +40,7 @@ public class NewsModelImpl implements NewsModel {
             public void onResponse(Response<ShowApiResponse<ShowApiNews>> response, Retrofit retrofit) {
                 Logger.d(response.message() + response.code() + response.body().showapi_res_code
                         + response.body().showapi_res_error);
-                if (response.body() != null && response.body().showapi_res_code == "0") {
+                if (response.body() != null && TextUtils.equals("0", response.body().showapi_res_code)) {
                     listListener.onSuccess(response.body().showapi_res_body.pagebean.contentlist);
                 } else {
                     listListener.onFailure(new Exception());

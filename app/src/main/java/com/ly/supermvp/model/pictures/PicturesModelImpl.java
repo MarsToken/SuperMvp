@@ -1,5 +1,7 @@
 package com.ly.supermvp.model.pictures;
 
+import android.text.TextUtils;
+
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
@@ -50,7 +52,7 @@ public class PicturesModelImpl implements PicturesModel{
 
                     @Override
                     public void onNext(ShowApiResponse<ShowApiPictures> showApiPicturesShowApiResponse) {
-                        if (showApiPicturesShowApiResponse.showapi_res_body != null &&showApiPicturesShowApiResponse.showapi_res_code == "0") {
+                        if (showApiPicturesShowApiResponse.showapi_res_body != null && TextUtils.equals("0", showApiPicturesShowApiResponse.showapi_res_code)) {
                             listener.onSuccess(showApiPicturesShowApiResponse.showapi_res_body.pagebean.contentlist);
                         } else {
                             listener.onFailure(new Exception());
