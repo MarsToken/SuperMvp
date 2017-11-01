@@ -6,7 +6,7 @@
 - Android一些次新的技术的一个合集示例
 - API来自网络免费API（感谢提供api的服务商，良心啊~，不过*最新版本美图大全已经改为收费的API*）
 - MVP模式（使用ViewDelegate解耦，非常感谢**kymjs**提供的mvp思想，在他的基础上我有一些改动，希望能在这个应用上做个最佳实践）@kymjs(https://github.com/kymjs/TheMVP)
-- leakcanary简单引入
+- leakcanary引入检测内存泄漏
 - Retrofit（+RxJava）网络请求
 - Glide加载缓存图片（瀑布流卡片显示）
 - 使用RecyclerView展示新闻列表
