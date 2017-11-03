@@ -76,7 +76,9 @@ public class PictureGridAdapter extends RecyclerView.Adapter{
 
         @Override
         public void onClick(View v) {
-            mOnImageClickListener.onImageClick(v, this.getPosition());
+            if(mOnImageClickListener != null) {
+                mOnImageClickListener.onImageClick(v, this.getPosition());
+            }
         }
     }
 

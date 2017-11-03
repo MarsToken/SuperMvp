@@ -137,7 +137,9 @@ public class NewsListAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-            mOnItemClickListener.onItemClick(v, this.getPosition());
+            if(mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(v, this.getPosition());
+            }
         }
     }
 
