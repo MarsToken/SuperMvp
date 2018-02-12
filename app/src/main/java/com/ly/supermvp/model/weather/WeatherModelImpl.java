@@ -4,11 +4,15 @@ import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.server.RetrofitService;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.schedulers.Schedulers;
+import org.reactivestreams.Subscriber;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * <Pre>
@@ -32,23 +36,27 @@ public class WeatherModelImpl implements WeatherModel {
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0() {
+                .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void call() {
+                    public void accept(Disposable disposable) throws Exception {
                         listener.onStart();
                     }
                 })
-                .subscribe(new Subscriber<ShowApiResponse<ShowApiWeather>>() {
-                    @Override
-                    public void onCompleted() {
-                        //仅成功后会回调
-                        listener.onFinish();
-                    }
-
+                .subscribe(new Observer<ShowApiResponse<ShowApiWeather>>() {
                     @Override
                     public void onError(Throwable e) {
                         listener.onFailure(e);
                         listener.onFinish();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        listener.onFinish();
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

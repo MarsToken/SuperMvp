@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.jakewharton.rxbinding.support.v4.widget.RxSwipeRefreshLayout;
+import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ly.supermvp.R;
 import com.ly.supermvp.common.Constants;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
@@ -17,8 +17,8 @@ import com.ly.supermvp.widget.ProgressLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import rx.functions.Action1;
+import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 /**
  * <Pre>
@@ -32,22 +32,22 @@ import rx.functions.Action1;
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public abstract class BaseRecyclerViewDelegate extends AppDelegate implements LoadingView{
-    @Bind(R.id.progress_layout)
+    @BindView(R.id.progress_layout)
     ProgressLayout progress_layout;//进度条布局（通用，可实现错误按钮，点击重试）
-    @Bind(R.id.swipe_refresh_layout)
+    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipe_refresh_layout;//下拉刷新控件
-    @Bind(R.id.recyclerview)
+    @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
     //悬浮菜单
-    @Bind(R.id.floating_action_menu)
+    @BindView(R.id.floating_action_menu)
     FloatingActionMenu floating_action_menu;
-    @Bind(R.id.floating_action_button1)
+    @BindView(R.id.floating_action_button1)
     FloatingActionButton floating_action_button1;
-    @Bind(R.id.floating_action_button2)
+    @BindView(R.id.floating_action_button2)
     FloatingActionButton floating_action_button2;
-    @Bind(R.id.floating_action_button3)
+    @BindView(R.id.floating_action_button3)
     FloatingActionButton floating_action_button3;
-    @Bind(R.id.floating_action_button4)
+    @BindView(R.id.floating_action_button4)
     FloatingActionButton floating_action_button4;
 
     protected List<FloatingActionButton> mFloatingActionButtons;//悬浮菜单选项数组
@@ -107,9 +107,9 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements Lo
      * @param callBack 下拉刷新的回调接口
      */
     public void registerSwipeRefreshCallBack(final SwipeRefreshAndLoadMoreCallBack callBack) {
-        RxSwipeRefreshLayout.refreshes(swipe_refresh_layout).subscribe(new Action1<Void>() {
+        RxSwipeRefreshLayout.refreshes(swipe_refresh_layout).subscribe(new Consumer<Object>() {
             @Override
-            public void call(Void aVoid) {
+            public void accept(Object o) throws Exception {
                 // 2016/2/29 调用fragment的方法加载数据，需要解耦(已用接口解决)
                 callBack.refresh();
             }
@@ -127,7 +127,7 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements Lo
 
     @Override
     public void showContent() {
-        RxSwipeRefreshLayout.refreshing(swipe_refresh_layout).call(false);
+        swipe_refresh_layout.setRefreshing(false);
         if (!progress_layout.isContent()) {
             progress_layout.showContent();
         }
@@ -135,7 +135,7 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements Lo
 
     @Override
     public void showError(int messageId, View.OnClickListener listener) {
-        RxSwipeRefreshLayout.refreshing(swipe_refresh_layout).call(false);
+        swipe_refresh_layout.setRefreshing(false);
         if (!progress_layout.isError()) {
             progress_layout.showError(messageId, listener);
         }

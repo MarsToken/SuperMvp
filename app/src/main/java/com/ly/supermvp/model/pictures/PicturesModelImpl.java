@@ -6,13 +6,19 @@ import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.List;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * <Pre>
@@ -32,22 +38,27 @@ public class PicturesModelImpl implements PicturesModel{
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0() {
+                .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void call() {
+                    public void accept(Disposable disposable) throws Exception {
                         listener.onStart();
                     }
                 })
-                .subscribe(new Subscriber<ShowApiResponse<ShowApiPictures>>() {
-                    @Override
-                    public void onCompleted() {
-                        listener.onFinish();
-                    }
-
+                .subscribe(new Observer<ShowApiResponse<ShowApiPictures>>() {
                     @Override
                     public void onError(Throwable e) {
                         listener.onFailure(e);
                         listener.onFinish();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        listener.onFinish();
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

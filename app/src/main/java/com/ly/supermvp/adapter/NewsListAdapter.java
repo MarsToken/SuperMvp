@@ -14,7 +14,7 @@ import com.ly.supermvp.utils.GlideUtil;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -122,11 +122,11 @@ public class NewsListAdapter extends RecyclerView.Adapter {
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @Bind(R.id.tv_desc)
+        @BindView(R.id.tv_desc)
         TextView desc;
-        @Bind(R.id.iv_desc)
+        @BindView(R.id.iv_desc)
         ImageView imageView;
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView title;
 
         public ItemViewHolder(View itemView) {

@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.ly.supermvp.R;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * <Pre>
@@ -21,10 +21,10 @@ import butterknife.Bind;
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public class MainActivityDelegate extends AppDelegate{
-    @Bind(R.id.container)
+    @BindView(R.id.container)
     ViewPager mViewpager;
 
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     TabLayout mTabLayout;
     @Override
     public int getRootLayoutId() {

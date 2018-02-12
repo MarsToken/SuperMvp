@@ -5,11 +5,11 @@ import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.pictures.ShowApiPictures;
 import com.ly.supermvp.model.weather.ShowApiWeather;
 
-import retrofit.http.GET;
-import retrofit.http.Header;
-import retrofit.http.Headers;
-import retrofit.http.Query;
-import rx.Observable;
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 /**
  * <Pre>

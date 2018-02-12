@@ -14,7 +14,7 @@ import com.ly.supermvp.mvp_frame.view.AppDelegate;
 import com.ly.supermvp.utils.GlideUtil;
 import com.rey.material.widget.ProgressView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * <Pre>
@@ -28,15 +28,15 @@ import butterknife.Bind;
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public class NewsDetailActivityDelegate extends AppDelegate{
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.progress)
+    @BindView(R.id.progress)
     ProgressView mProgressView;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     WebView mWebView;
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @Bind(R.id.iv_detail)
+    @BindView(R.id.iv_detail)
     ImageView mImageView;
 
     @Override

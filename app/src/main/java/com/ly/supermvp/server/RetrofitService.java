@@ -6,20 +6,21 @@ import com.ly.supermvp.MyApplication;
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.utils.NetUtil;
 import com.orhanobut.logger.Logger;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.CacheControl;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import okhttp3.Cache;
+import okhttp3.CacheControl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * <Pre>
@@ -71,7 +72,7 @@ public class RetrofitService {
                             .client(mOkHttpClient)
                             .baseUrl(BizInterface.API)
                             .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build().create(BaiduAPI.class);
                 }
             }
@@ -92,7 +93,7 @@ public class RetrofitService {
                             .client(mOkHttpClient)
                             .baseUrl(BizInterface.SHOW_API)
                             .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build().create(ShowAPI.class);
                 }
             }
@@ -131,16 +132,19 @@ public class RetrofitService {
                     }
                 }
             };
-            mOkHttpClient = new OkHttpClient();
-            mOkHttpClient.setCache(cache);
-            mOkHttpClient.networkInterceptors().add(rewriteCacheControlInterceptor);
-            mOkHttpClient.interceptors().add(rewriteCacheControlInterceptor);
-            mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+//            mOkHttpClient = new OkHttpClient();
+//            mOkHttpClient.setCache(cache);
+//            mOkHttpClient.networkInterceptors().add(rewriteCacheControlInterceptor);
+//            mOkHttpClient.interceptors().add(rewriteCacheControlInterceptor);
+//            mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
             //okhttp 3
-//                    mOkHttpClient = new OkHttpClient.Builder().cache(cache)
-//                            .addNetworkInterceptor(rewriteCacheControlInterceptor)
-//                            .addInterceptor(rewriteCacheControlInterceptor)
-//                            .connectTimeout(30, TimeUnit.SECONDS).build();
+            HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+            logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                    mOkHttpClient = new OkHttpClient.Builder().cache(cache)
+                            .addNetworkInterceptor(rewriteCacheControlInterceptor)
+                            .addInterceptor(rewriteCacheControlInterceptor)
+                            .addInterceptor(logInterceptor)
+                            .connectTimeout(10, TimeUnit.SECONDS).build();
 
         }
     }

@@ -8,10 +8,11 @@ import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
 import com.orhanobut.logger.Logger;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 
 /**
  * <Pre>
@@ -37,7 +38,7 @@ public class NewsModelImpl implements NewsModel {
 
         call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override
-            public void onResponse(Response<ShowApiResponse<ShowApiNews>> response, Retrofit retrofit) {
+            public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
                 Logger.d(response.message() + response.code() + response.body().showapi_res_code
                         + response.body().showapi_res_error);
                 if (response.body() != null && TextUtils.equals("0", response.body().showapi_res_code)) {
@@ -48,7 +49,7 @@ public class NewsModelImpl implements NewsModel {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
                 listListener.onFailure(t);
             }
         });

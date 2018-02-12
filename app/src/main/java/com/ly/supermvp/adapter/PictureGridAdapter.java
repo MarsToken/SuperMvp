@@ -14,7 +14,7 @@ import com.ly.supermvp.widget.RatioImageView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -62,9 +62,9 @@ public class PictureGridAdapter extends RecyclerView.Adapter{
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @Bind(R.id.iv_picture)
+        @BindView(R.id.iv_picture)
         RatioImageView iv_picture;
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tv_title;
 
         public ItemViewHolder(View itemView) {

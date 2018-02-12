@@ -19,7 +19,7 @@ import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.rey.material.widget.EditText;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * <Pre>
@@ -40,9 +40,9 @@ public class WeatherFragmentDelegate extends AppDelegate implements LoadingView{
 
     private LinearLayout ll_dialog_holder;
 
-    @Bind(R.id.progress_layout)
+    @BindView(R.id.progress_layout)
     ProgressLayout mProgressLayout;
-    @Bind(R.id.et_location)
+    @BindView(R.id.et_location)
     EditText et_location;
 
     @Override

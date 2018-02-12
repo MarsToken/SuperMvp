@@ -6,7 +6,7 @@ import android.os.StrictMode;
 
 import com.ly.supermvp.utils.CrashHandler;
 import com.ly.supermvp.utils.ToastUtils;
-import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -33,7 +33,12 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init().logLevel(LogLevel.FULL);
+        //初始化日志工具
+        Logger.addLogAdapter(new AndroidLogAdapter() {
+            @Override public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
         instance = this;
 //        this.enabledStrictMode();
         ToastUtils.register(this);
