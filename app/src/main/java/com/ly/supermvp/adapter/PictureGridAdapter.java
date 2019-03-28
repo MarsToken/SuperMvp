@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ly.supermvp.R;
-import com.ly.supermvp.model.pictures.PictureBody;
+import com.ly.supermvp.model.pictures.OpenApiPicture;
 import com.ly.supermvp.utils.GlideUtil;
 import com.ly.supermvp.widget.RatioImageView;
 
@@ -29,12 +29,12 @@ import butterknife.ButterKnife;
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public class PictureGridAdapter extends RecyclerView.Adapter{
-    private List<PictureBody> mList;
+    private List<OpenApiPicture> mList;
     private Activity context;
 
     private OnImageClickListener mOnImageClickListener;
 
-    public PictureGridAdapter(List<PictureBody> mList, Activity context) {
+    public PictureGridAdapter(List<OpenApiPicture> mList, Activity context) {
         this.mList = mList;
         this.context = context;
     }
@@ -50,9 +50,10 @@ public class PictureGridAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
             ItemViewHolder viewHolder = (ItemViewHolder) holder;
-            PictureBody pictureBody = mList.get(position);
-            GlideUtil.loadImage(context, pictureBody.list.get(0).middle, viewHolder.iv_picture);
-            viewHolder.tv_title.setText(pictureBody.title);
+//            PictureBody pictureBody = mList.get(position);
+            String url = mList.get(position).img;
+            GlideUtil.loadImage(context, url, viewHolder.iv_picture);
+            viewHolder.tv_title.setText(mList.get(position).time);
         }
     }
 

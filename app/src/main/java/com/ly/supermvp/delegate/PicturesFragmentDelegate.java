@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.bm.library.PhotoView;
-import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.utils.GlideUtil;
@@ -44,7 +43,7 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate implement
 
     @Override
     boolean setFloatingActionMenuVisible() {
-        return true;
+        return false;
     }
 
     /**

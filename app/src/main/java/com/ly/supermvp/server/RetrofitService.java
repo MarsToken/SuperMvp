@@ -81,6 +81,27 @@ public class RetrofitService {
     }
 
     /**
+     * open api
+     */
+    private volatile static OpenAPI openAPI = null;
+    public static OpenAPI createOpenAPI() {
+        if (openAPI == null) {
+            synchronized (RetrofitService.class) {
+                if (openAPI == null) {
+                    initOkHttpClient();
+                    openAPI = new Retrofit.Builder()
+                            .client(mOkHttpClient)
+                            .baseUrl(BizInterface.OPEN_API)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .build().create(OpenAPI.class);
+                }
+            }
+        }
+        return openAPI;
+    }
+
+    /**
      * 易源api
      */
     private volatile static ShowAPI showAPI = null;

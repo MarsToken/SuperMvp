@@ -7,7 +7,7 @@ import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.delegate.PicturesFragmentDelegate;
 import com.ly.supermvp.delegate.SwipeRefreshAndLoadMoreCallBack;
 import com.ly.supermvp.model.OnNetRequestListener;
-import com.ly.supermvp.model.pictures.PictureBody;
+import com.ly.supermvp.model.pictures.OpenApiPicture;
 import com.ly.supermvp.model.pictures.PicturesModel;
 import com.ly.supermvp.model.pictures.PicturesModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
@@ -33,7 +33,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     private int mPageNum = 1;
     private String mPictureId = PicturesModel.DEFAULT_TYPE;
 
-    private List<PictureBody> mList = new ArrayList<>();
+    private List<OpenApiPicture> mList = new ArrayList<>();
 
     public static PicturesFragment newInstance() {
         PicturesFragment fragment = new PicturesFragment();
@@ -53,7 +53,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         mPictureGridAdapter.setOnImageClickListener(new PictureGridAdapter.OnImageClickListener() {
             @Override
             public void onImageClick(View view, int position) {
-                viewDelegate.showDialog(mList.get(position).list.get(0).big);
+                viewDelegate.showDialog(mList.get(position).img);
             }
         });
 
@@ -82,7 +82,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         } else {
             mPageNum++;
         }
-        mPicturesModel.netLoadPictures(id, mPageNum, new OnNetRequestListener<List<PictureBody>>() {
+        mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20, new OnNetRequestListener<List<OpenApiPicture>>() {
             @Override
             public void onStart() {
                 viewDelegate.showRefreshLayout();
@@ -94,7 +94,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
             }
 
             @Override
-            public void onSuccess(List<PictureBody> data) {
+            public void onSuccess(List<OpenApiPicture> data) {
                 viewDelegate.showContent();
                 if (isRefresh) {
                     if (!mList.isEmpty()) {

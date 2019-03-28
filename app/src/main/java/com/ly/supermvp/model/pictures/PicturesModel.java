@@ -18,4 +18,6 @@ public interface PicturesModel {
     String DEFAULT_TYPE = "4001";//类别 "清纯"
 
     void netLoadPictures(String type, int page, OnNetRequestListener<List<PictureBody>> listener);
+
+    void netLoadPicturesByOpenApi(int page, int count, OnNetRequestListener<List<OpenApiPicture>> listener);
 }

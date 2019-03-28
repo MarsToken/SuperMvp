@@ -16,6 +16,10 @@ public interface BizInterface {
      */
     String API = "http://apis.baidu.com";
     /**
+     * 百度API接口
+     */
+    String OPEN_API = "https://api.apiopen.top";
+    /**
      * 易源API接口（官方）
      */
     String SHOW_API = "http://route.showapi.com";
@@ -106,5 +110,7 @@ public interface BizInterface {
      服务商： 易源接口
      */
     String PICTURES_URL = "/showapi_open_bus/pic/pic_search";
+
+    String OPEN_API_PICTURES_URL = "/getImages";
 
 }
