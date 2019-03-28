@@ -5,7 +5,6 @@ import android.view.View;
 import com.ly.supermvp.delegate.NewsDetailActivityDelegate;
 import com.ly.supermvp.mvp_frame.presenter.ActivityPresenter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -57,7 +56,6 @@ public class NewsDetailActivity extends ActivityPresenter<NewsDetailActivityDele
             finish();
             viewDelegate.showToast("参数有误");
         }
-        EventBus.getDefault().register(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
