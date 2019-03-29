@@ -1,0 +1,24 @@
+ext {
+    versions = [
+            'versionCode'           : 1,
+            'versionName'           : '1.0',
+
+            'compileSdk'            : 28,
+            'buildTools'            : '28.0.3',
+            'minSdk'                : 15,
+            'targetSdk'             : 28,
+            'androidSupportVersion' : '28.+',
+            'retrofitVersion'       : '2.3.0',
+            'leakcanaryVersion'     : '1.5.4',
+            'rxandroidVersion'      : '2.0.1',
+            'rxjavaVersion'         : '2.1.9',
+            'rxbindingVersion'      : '2.1.0',
+            'glideVersion'          : '3.6.1',
+            'butterknifeVersion'    : '8.8.1',
+            'loggerVersion'         : '2.1.1',
+            'rey5137MaterialVersion': '1.2.2',
+            'swipebacklayoutVersion': '1.1.0',
+            'photoviewVersion'      : '1.3.6',
+            'fabVersion'            : '1.6.2'
+    ]
+}

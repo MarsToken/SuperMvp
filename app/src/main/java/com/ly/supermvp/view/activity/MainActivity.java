@@ -52,6 +52,7 @@ public class MainActivity extends ActivityPresenter<MainActivityDelegate> implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarFullTransparent();
 //        setContentView(R.layout.activity_main);
 
         // Create the adapter that will return a fragment for each of the three
