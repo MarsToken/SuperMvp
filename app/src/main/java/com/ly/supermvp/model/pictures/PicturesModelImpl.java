@@ -4,6 +4,7 @@ import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.server.RetrofitService;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
 
@@ -27,6 +28,11 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
  *          Create by 2016/3/21 16:04
  */
 public class PicturesModelImpl implements PicturesModel{
+    private LifecycleTransformer mLifecycleTransformer;
+
+    public PicturesModelImpl(LifecycleTransformer mLifecycleTransformer) {
+        this.mLifecycleTransformer = mLifecycleTransformer;
+    }
     @Override
     public void netLoadPicturesByOpenApi(int page, int count, final OnNetRequestListener<List<OpenApiPicture>> listener) {
         //临时切换baseurl
@@ -36,6 +42,7 @@ public class PicturesModelImpl implements PicturesModel{
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .compose(mLifecycleTransformer)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {

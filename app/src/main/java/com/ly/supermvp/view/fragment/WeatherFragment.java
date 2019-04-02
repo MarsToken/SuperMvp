@@ -44,7 +44,7 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
     @Override
     protected void initData() {
         super.initData();
-        mWeatherModel = new WeatherModelImpl();
+        mWeatherModel = new WeatherModelImpl(bindToLifecycle());
     }
 
     @Override

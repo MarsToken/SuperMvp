@@ -48,7 +48,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     @Override
     protected void initData() {
         super.initData();
-        mPicturesModel = new PicturesModelImpl();
+        mPicturesModel = new PicturesModelImpl(bindToLifecycle());
         mPictureGridAdapter = new PictureGridAdapter(mList, getActivity());
         mPictureGridAdapter.setOnImageClickListener(new PictureGridAdapter.OnImageClickListener() {
             @Override

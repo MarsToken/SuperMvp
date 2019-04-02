@@ -17,7 +17,6 @@ package com.ly.supermvp.mvp_frame.presenter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,7 +35,7 @@ import butterknife.Unbinder;
  *@author kymjs (http://www.kymjs.com/) on 10/23/15.
  * @param <T> View delegate class type
  */
-public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {
+public abstract class FragmentPresenter<T extends IDelegate> extends com.trello.rxlifecycle2.components.support.RxFragment {
     public T viewDelegate;
     private Unbinder mUnbinder;
 
