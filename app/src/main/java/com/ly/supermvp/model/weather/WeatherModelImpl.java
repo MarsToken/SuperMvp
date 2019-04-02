@@ -4,8 +4,6 @@ import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.server.RetrofitService;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 
-import org.reactivestreams.Subscriber;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,7 +29,7 @@ public class WeatherModelImpl implements WeatherModel {
                                            final OnNetRequestListener listener) {
         //使用RxJava响应Retrofit
         Observable<ShowApiResponse<ShowApiWeather>> observable = RetrofitService.getInstance().
-                createBaiduAPI().getWeather(RetrofitService.getCacheControl(), area, needMoreDay,
+                createAPI().getWeather(RetrofitService.getCacheControl(), area, needMoreDay,
                 needIndex, needAlarm, need3HourForcast);
 
         observable.subscribeOn(Schedulers.io())

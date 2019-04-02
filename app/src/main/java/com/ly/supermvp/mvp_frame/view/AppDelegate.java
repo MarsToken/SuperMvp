@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import com.ly.supermvp.utils.ToastUtils;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * View delegate base class
@@ -38,13 +39,22 @@ public abstract class AppDelegate implements IDelegate {
 
     protected View rootView;
 
+    private Unbinder mUnbinder;
+
     public abstract int getRootLayoutId();
 
     @Override
     public void create(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int rootLayoutId = getRootLayoutId();
         rootView = inflater.inflate(rootLayoutId, container, false);
-        ButterKnife.bind(this ,rootView);
+        mUnbinder = ButterKnife.bind(this ,rootView);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 
     @Override

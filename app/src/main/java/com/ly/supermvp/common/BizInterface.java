@@ -48,7 +48,7 @@ public interface BizInterface {
     String WEATHER_URL = "/showapi_open_bus/weather_showapi/address";
 
     /**
-     * 美图大全 (根据类型)
+     * 美图大全 (根据类型) 已经弃用
      * "list": [
      {
      "id": 4001, //此id很重要，在【图片查询】接口里将使用此id进行分类查询
@@ -112,5 +112,15 @@ public interface BizInterface {
     String PICTURES_URL = "/showapi_open_bus/pic/pic_search";
 
     String OPEN_API_PICTURES_URL = "/getImages";
+
+    /**
+     * 用于baseurl切换
+     */
+    String DOMAIN = "Domain-Name: ";
+
+    //易源地址标签
+    String DOMAIN_SHOW_API = "domain_show_api";
+    //openapi标签
+    String DOMAIN_OPEN_API = "domain_open_api";
 
 }

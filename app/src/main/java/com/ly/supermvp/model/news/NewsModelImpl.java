@@ -11,7 +11,6 @@ import com.orhanobut.logger.Logger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
 /**
@@ -32,7 +31,7 @@ public class NewsModelImpl implements NewsModel {
     public void netLoadNewsList(int page, String channelId, String channelName, final OnNetRequestListener listListener) {
         //注意，此处采用Retrofit的官方响应方式，天气预报采用RxJava，学习一下两种用法
         Call<ShowApiResponse<ShowApiNews>> call = RetrofitService.getInstance()
-                .createShowAPI()
+                .createAPI()
                 .getNewsList(RetrofitService.getCacheControl(), BizInterface.SHOW_API_APPID,
                         BizInterface.SHOW_API_KEY, page, channelId, channelName);
 

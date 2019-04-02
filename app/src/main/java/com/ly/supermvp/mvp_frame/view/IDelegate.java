@@ -29,6 +29,8 @@ import android.view.ViewGroup;
 public interface IDelegate {
     void create(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
+    void onDestroy();
+
     int getOptionsMenuId();
 
     Toolbar getToolbar();

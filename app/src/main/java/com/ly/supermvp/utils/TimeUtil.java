@@ -5,6 +5,9 @@ import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 时间相关
+ */
 public class TimeUtil {
 
 	/**

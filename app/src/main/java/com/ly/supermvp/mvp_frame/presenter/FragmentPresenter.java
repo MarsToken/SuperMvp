@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import com.ly.supermvp.mvp_frame.view.IDelegate;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -37,6 +38,7 @@ import butterknife.ButterKnife;
  */
 public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {
     public T viewDelegate;
+    private Unbinder mUnbinder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {
             savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         viewDelegate.create(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, viewDelegate.getRootView());
+        mUnbinder = ButterKnife.bind(this, viewDelegate.getRootView());
         return viewDelegate.getRootView();
     }
 
@@ -107,6 +109,9 @@ public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         viewDelegate = null;
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 
     protected abstract Class<T> getDelegateClass();

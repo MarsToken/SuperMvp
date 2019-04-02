@@ -31,7 +31,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     private PictureGridAdapter mPictureGridAdapter;
 
     private int mPageNum = 1;
-    private String mPictureId = PicturesModel.DEFAULT_TYPE;
+    private String mPictureId = "";
 
     private List<OpenApiPicture> mList = new ArrayList<>();
 

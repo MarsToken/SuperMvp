@@ -21,6 +21,10 @@ package com.ly.supermvp.utils;
 
 import android.content.Context;
 import android.widget.Toast;
+
+/**
+ * toast工具类，避免重复提醒
+ */
 public class ToastUtils {
 
     public static Context sContext;

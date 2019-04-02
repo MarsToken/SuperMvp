@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -29,8 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  * @author 刘阳
  * @version 1.0
- *          <p/>
- *          Create by 2016/1/27 15:14
+ * <p/>
+ * Create by 2016/1/27 15:14
  */
 public class RetrofitService {
 
@@ -41,7 +42,9 @@ public class RetrofitService {
     //查询网络的Cache-Control设置，头部Cache-Control设为max-age=0时则不会使用缓存而请求服务器
     protected static final String CACHE_CONTROL_NETWORK = "max-age=0";
 
-    private static OkHttpClient mOkHttpClient;
+    private volatile static OkHttpClient mOkHttpClient;
+
+    private volatile static AllAPI mAPI = null;
 
     private RetrofitService() {
     }
@@ -60,66 +63,19 @@ public class RetrofitService {
     }
 
     /**
-     * 百度api
-     */
-    private volatile static BaiduAPI baiduAPI = null;
-    public static BaiduAPI createBaiduAPI() {
-        if (baiduAPI == null) {
-            synchronized (RetrofitService.class) {
-                if (baiduAPI == null) {
-                    initOkHttpClient();
-                    baiduAPI = new Retrofit.Builder()
-                            .client(mOkHttpClient)
-                            .baseUrl(BizInterface.API)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .build().create(BaiduAPI.class);
-                }
-            }
-        }
-        return baiduAPI;
-    }
-
-    /**
-     * open api
-     */
-    private volatile static OpenAPI openAPI = null;
-    public static OpenAPI createOpenAPI() {
-        if (openAPI == null) {
-            synchronized (RetrofitService.class) {
-                if (openAPI == null) {
-                    initOkHttpClient();
-                    openAPI = new Retrofit.Builder()
-                            .client(mOkHttpClient)
-                            .baseUrl(BizInterface.OPEN_API)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .build().create(OpenAPI.class);
-                }
-            }
-        }
-        return openAPI;
-    }
-
-    /**
      * 易源api
      */
-    private volatile static ShowAPI showAPI = null;
-    public static ShowAPI createShowAPI() {
-        if (showAPI == null) {
-            synchronized (RetrofitService.class) {
-                if (showAPI == null) {
-                    initOkHttpClient();
-                    showAPI = new Retrofit.Builder()
-                            .client(mOkHttpClient)
-                            .baseUrl(BizInterface.SHOW_API)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .build().create(ShowAPI.class);
-                }
-            }
+    public static AllAPI createAPI() {
+        initOkHttpClient();
+        if (mAPI == null) {
+            mAPI = new Retrofit.Builder()
+                    .client(mOkHttpClient)
+                    .baseUrl(BizInterface.SHOW_API)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build().create(AllAPI.class);
         }
-        return showAPI;
+        return mAPI;
     }
 
     // 配置OkHttpClient
@@ -158,17 +114,20 @@ public class RetrofitService {
 //            mOkHttpClient.networkInterceptors().add(rewriteCacheControlInterceptor);
 //            mOkHttpClient.interceptors().add(rewriteCacheControlInterceptor);
 //            mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+
             //okhttp 3
             HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
             logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                    mOkHttpClient = new OkHttpClient.Builder().cache(cache)
-                            .addNetworkInterceptor(rewriteCacheControlInterceptor)
-                            .addInterceptor(rewriteCacheControlInterceptor)
-                            .addInterceptor(logInterceptor)
-                            .connectTimeout(10, TimeUnit.SECONDS).build();
+            OkHttpClient.Builder builder = new OkHttpClient.Builder().cache(cache)
+                    .addNetworkInterceptor(rewriteCacheControlInterceptor)
+                    .addInterceptor(rewriteCacheControlInterceptor)
+                    .addInterceptor(logInterceptor)
+                    .connectTimeout(10, TimeUnit.SECONDS);
+            mOkHttpClient = RetrofitUrlManager.getInstance().with(builder).build();
 
         }
     }
+
     /**
      * 根据网络状况获取缓存的策略
      *

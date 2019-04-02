@@ -51,4 +51,5 @@ dependencies {
     implementation "me.imid.swipebacklayout.lib:library:${versions.swipebacklayoutVersion}"
     implementation "com.bm.photoview:library:${versions.photoviewVersion}"
     implementation "com.github.clans:fab:${versions.fabVersion}"
+    implementation 'me.jessyan:retrofit-url-manager:1.4.0'
 }
