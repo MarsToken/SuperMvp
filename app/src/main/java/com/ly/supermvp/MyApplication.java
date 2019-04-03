@@ -67,16 +67,6 @@ public class MyApplication extends Application {
             return false;
         }
     }
-
-    private void enabledStrictMode() {
-        if (SDK_INT >= GINGERBREAD) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
-                    .detectAll()  //
-                    .penaltyLog() //
-                    .penaltyDeath() //
-                    .build());
-        }
-    }
     // 获取ApplicationContext
     public static Context getContext() {
         return instance;

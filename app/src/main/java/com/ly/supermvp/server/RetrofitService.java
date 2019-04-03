@@ -63,7 +63,7 @@ public class RetrofitService {
     }
 
     /**
-     * 易源api
+     * 创建api
      */
     public static AllAPI createAPI() {
         initOkHttpClient();

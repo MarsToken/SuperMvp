@@ -3,9 +3,9 @@ package com.ly.supermvp.server;
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.entity.ShowApiResponse;
-import com.ly.supermvp.model.news.ShowApiNews;
-import com.ly.supermvp.model.pictures.OpenApiPicture;
-import com.ly.supermvp.model.weather.ShowApiWeather;
+import com.ly.supermvp.model.entity.ShowApiNews;
+import com.ly.supermvp.model.entity.OpenApiPicture;
+import com.ly.supermvp.model.entity.ShowApiWeather;
 
 import java.util.List;
 

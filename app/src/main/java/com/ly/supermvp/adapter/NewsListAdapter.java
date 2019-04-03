@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ly.supermvp.R;
-import com.ly.supermvp.model.news.NewsBody;
+import com.ly.supermvp.model.entity.NewsBody;
 import com.ly.supermvp.utils.GlideUtil;
 
 import java.util.List;

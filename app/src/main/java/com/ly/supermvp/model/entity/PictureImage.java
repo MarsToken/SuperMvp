@@ -1,4 +1,4 @@
-package com.ly.supermvp.model.pictures;
+package com.ly.supermvp.model.entity;
 
 /**
  * <Pre>

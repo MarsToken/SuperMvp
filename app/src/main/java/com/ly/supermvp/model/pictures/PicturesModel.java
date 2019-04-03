@@ -1,6 +1,7 @@
 package com.ly.supermvp.model.pictures;
 
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.OpenApiPicture;
 
 import java.util.List;
 

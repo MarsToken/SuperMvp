@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.ShowApiNews;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
 import com.orhanobut.logger.Logger;

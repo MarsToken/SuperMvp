@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ly.supermvp.R;
-import com.ly.supermvp.model.weather.ShowApiWeather;
+import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
 import com.ly.supermvp.utils.GlideUtil;
 import com.ly.supermvp.view.LoadingView;

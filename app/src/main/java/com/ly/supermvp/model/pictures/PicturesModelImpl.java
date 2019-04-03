@@ -2,6 +2,7 @@ package com.ly.supermvp.model.pictures;
 
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.server.RetrofitService;
 import com.trello.rxlifecycle2.LifecycleTransformer;

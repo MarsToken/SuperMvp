@@ -1,4 +1,4 @@
-package com.ly.supermvp.model.weather;
+package com.ly.supermvp.model.entity;
 
 /**
  * <Pre>

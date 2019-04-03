@@ -1,6 +1,7 @@
 package com.ly.supermvp.model.weather;
 
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.ShowApiWeather;
 
 /**
  * <Pre>

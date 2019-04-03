@@ -1,6 +1,7 @@
 package com.ly.supermvp.model.news;
 
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.NewsBody;
 
 import java.util.List;
 

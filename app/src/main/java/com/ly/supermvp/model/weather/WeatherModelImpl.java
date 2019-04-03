@@ -2,6 +2,7 @@ package com.ly.supermvp.model.weather;
 
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiResponse;
+import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.server.RetrofitService;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 

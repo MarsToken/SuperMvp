@@ -7,7 +7,7 @@ import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.delegate.PicturesFragmentDelegate;
 import com.ly.supermvp.delegate.SwipeRefreshAndLoadMoreCallBack;
 import com.ly.supermvp.model.OnNetRequestListener;
-import com.ly.supermvp.model.pictures.OpenApiPicture;
+import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.pictures.PicturesModel;
 import com.ly.supermvp.model.pictures.PicturesModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;

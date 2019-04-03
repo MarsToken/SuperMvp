@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ly.supermvp.R;
-import com.ly.supermvp.model.pictures.OpenApiPicture;
+import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.utils.GlideUtil;
 import com.ly.supermvp.widget.RatioImageView;
 

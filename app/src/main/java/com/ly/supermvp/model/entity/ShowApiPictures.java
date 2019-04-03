@@ -1,18 +1,18 @@
-package com.ly.supermvp.model.news;
+package com.ly.supermvp.model.entity;
 
 import java.util.List;
 
 /**
  * <Pre>
- *     新闻列表实体类
+ *     美图大全实体类
  * </Pre>
  *
  * @author 刘阳
  * @version 1.0
  *          <p/>
- *          Create by 2016/1/27 15:28
+ *          Create by 2016/3/21 15:39
  */
-public class ShowApiNews {
+public class ShowApiPictures {
     public PageBean pagebean;
     public String ret_code;
     public class PageBean {
@@ -20,6 +20,6 @@ public class ShowApiNews {
         public String allPages;
         public String currentPage;
         public String maxResult;
-        public List<NewsBody> contentlist;
+        public List<PictureBody> contentlist;
     }
 }
