@@ -6,14 +6,18 @@ import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.delegate.PicturesFragmentDelegate;
 import com.ly.supermvp.delegate.SwipeRefreshAndLoadMoreCallBack;
-import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.OpenApiPicture;
+import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.pictures.PicturesModel;
 import com.ly.supermvp.model.pictures.PicturesModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
+import com.ly.supermvp.server.NetTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * <Pre>
@@ -48,7 +52,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     @Override
     protected void initData() {
         super.initData();
-        mPicturesModel = new PicturesModelImpl(bindToLifecycle());
+        mPicturesModel = new PicturesModelImpl();
         mPictureGridAdapter = new PictureGridAdapter(mList, getActivity());
         mPictureGridAdapter.setOnImageClickListener(new PictureGridAdapter.OnImageClickListener() {
             @Override
@@ -82,7 +86,44 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         } else {
             mPageNum++;
         }
-        mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20, new OnNetRequestListener<List<OpenApiPicture>>() {
+
+        mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20).compose(
+                new NetTransformer<OpenApiResponse<List<OpenApiPicture>>, List<OpenApiPicture>>(this))
+                .subscribe(new Observer<List<OpenApiPicture>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        viewDelegate.showRefreshLayout();
+                    }
+
+                    @Override
+                    public void onNext(List<OpenApiPicture> openApiPictures) {
+                        viewDelegate.showContent();
+                        if (isRefresh) {
+                            if (!mList.isEmpty()) {
+                                mList.clear();
+                            }
+                        }
+                        mList.addAll(openApiPictures);
+                        mPictureGridAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                netLoadPictures(mPictureId, true);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        /*mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20, new OnNetRequestListener<List<OpenApiPicture>>() {
             @Override
             public void onStart() {
                 viewDelegate.showRefreshLayout();
@@ -114,7 +155,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                     }
                 });
             }
-        });
+        });*/
     }
 
     @Override

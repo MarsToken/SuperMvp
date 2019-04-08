@@ -1,9 +1,11 @@
 package com.ly.supermvp.model.pictures;
 
-import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.OpenApiPicture;
+import com.ly.supermvp.model.entity.OpenApiResponse;
 
 import java.util.List;
+
+import io.reactivex.Observable;
 
 /**
  * <Pre>
@@ -16,5 +18,5 @@ import java.util.List;
  *          Create by 2016/3/21 16:02
  */
 public interface PicturesModel {
-    void netLoadPicturesByOpenApi(int page, int count, OnNetRequestListener<List<OpenApiPicture>> listener);
+    Observable<OpenApiResponse<List<OpenApiPicture>>> netLoadPicturesByOpenApi(int page, int count);
 }

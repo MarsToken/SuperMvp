@@ -10,7 +10,6 @@ import com.bm.library.PhotoView;
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.utils.GlideUtil;
-import com.ly.supermvp.view.LoadingView;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -22,11 +21,11 @@ import com.orhanobut.dialogplus.ViewHolder;
  *
  * @author 刘阳
  * @version 1.0
- *          <p/>
- *          Create by 2016/3/21 14:52
+ * <p/>
+ * Create by 2016/3/21 14:52
  * @see https://github.com/liuyanggithub/SuperMvp
  */
-public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate implements LoadingView {
+public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate {
     private static final int PRELOAD_SIZE = 6;
     private LinearLayout ll_dialog_holder;//弹窗的布局
     private DialogPlus mDialog;
@@ -59,8 +58,8 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate implement
                 super.onScrolled(recyclerView, dx, dy);
                 boolean isBottom = mGridViewLayoutManager.findLastCompletelyVisibleItemPositions(new int[2])[1]
                         >= adapter.getItemCount() - PRELOAD_SIZE;
-                    if (!swipe_refresh_layout.isRefreshing() && isBottom) {
-                        callBack.loadMore();
+                if (!swipe_refresh_layout.isRefreshing() && isBottom) {
+                    callBack.loadMore();
                 }
             }
 
@@ -99,15 +98,25 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate implement
     /**
      * 设置悬浮菜单项目点击事件
      */
-    public void setFloatingActionButtonListener(final FloatingActionButtonListener listener){
-        for(int i = 0; i < mFloatingActionButtons.size(); i++){
+    public void setFloatingActionButtonListener(final FloatingActionButtonListener listener) {
+        for (int i = 0; i < mFloatingActionButtons.size(); i++) {
             String id = "";
             switch (i) {
-                case 0 : id = "4001"; break;
-                case 1 : id = "4002"; break;
-                case 2 : id = "4003"; break;
-                case 3 : id = "4004"; break;
-                default: id = "4001"; break;
+                case 0:
+                    id = "4001";
+                    break;
+                case 1:
+                    id = "4002";
+                    break;
+                case 2:
+                    id = "4003";
+                    break;
+                case 3:
+                    id = "4004";
+                    break;
+                default:
+                    id = "4001";
+                    break;
             }
             final String finalId = id;
             mFloatingActionButtons.get(i).setOnClickListener(new View.OnClickListener() {
@@ -120,7 +129,7 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate implement
         }
     }
 
-    public interface FloatingActionButtonListener{
+    public interface FloatingActionButtonListener {
         void onClick(String id);
     }
 

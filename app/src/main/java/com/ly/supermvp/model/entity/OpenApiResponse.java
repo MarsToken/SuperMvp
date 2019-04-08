@@ -15,4 +15,13 @@ public class OpenApiResponse<T> {
     public int code;
     public String message;
     public T result;
+
+    /**
+     * 判断是否成功
+     *
+     * @return
+     */
+    public boolean isSuccess() {
+        return SUCCESS == code;
+    }
 }

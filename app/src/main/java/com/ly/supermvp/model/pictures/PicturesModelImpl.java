@@ -1,20 +1,13 @@
 package com.ly.supermvp.model.pictures;
 
 import com.ly.supermvp.common.BizInterface;
-import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.server.RetrofitService;
-import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 
@@ -29,19 +22,16 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
  *          Create by 2016/3/21 16:04
  */
 public class PicturesModelImpl implements PicturesModel{
-    private LifecycleTransformer mLifecycleTransformer;
-
-    public PicturesModelImpl(LifecycleTransformer mLifecycleTransformer) {
-        this.mLifecycleTransformer = mLifecycleTransformer;
-    }
     @Override
-    public void netLoadPicturesByOpenApi(int page, int count, final OnNetRequestListener<List<OpenApiPicture>> listener) {
+    public Observable<OpenApiResponse<List<OpenApiPicture>>> netLoadPicturesByOpenApi(int page, int count) {
         //临时切换baseurl
         RetrofitUrlManager.getInstance().putDomain(BizInterface.DOMAIN_OPEN_API, BizInterface.OPEN_API);
         Observable<OpenApiResponse<List<OpenApiPicture>>> observable = RetrofitService.getInstance().
                 createAPI().getPictures(RetrofitService.getCacheControl(), page, count);
 
-        observable.subscribeOn(Schedulers.io())
+        return observable;
+
+        /*observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(mLifecycleTransformer)
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -75,6 +65,6 @@ public class PicturesModelImpl implements PicturesModel{
                             listener.onFailure(new Exception());
                         }
                     }
-                });
+                });*/
     }
 }
