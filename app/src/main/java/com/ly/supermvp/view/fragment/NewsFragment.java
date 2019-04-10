@@ -1,21 +1,28 @@
 package com.ly.supermvp.view.fragment;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.NewsListAdapter;
 import com.ly.supermvp.delegate.NewsFragmentDelegate;
 import com.ly.supermvp.delegate.SwipeRefreshAndLoadMoreCallBack;
-import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.NewsBody;
+import com.ly.supermvp.model.entity.ShowApiNews;
+import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.news.NewsModel;
 import com.ly.supermvp.model.news.NewsModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
 import com.ly.supermvp.view.activity.NewsDetailActivity;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * <Pre>
@@ -89,37 +96,40 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
         }else {
             mPageNum++;
         }
-        mNewsModel.netLoadNewsList(mPageNum, NewsModelImpl.CHANNEL_ID, NewsModelImpl.CHANNEL_NAME, new OnNetRequestListener<List<NewsBody>>() {
+        mNewsModel.netLoadNewsList(mPageNum, NewsModelImpl.CHANNEL_ID, NewsModelImpl.CHANNEL_NAME)
+                .enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override
-            public void onStart() {
+            public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
+                Logger.d(response.message() + response.code() + response.body().showapi_res_code
+                        + response.body().showapi_res_error);
 
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-
-            @Override
-            public void onSuccess(List<NewsBody> list) {
-                viewDelegate.showContent();
-                if(isRefresh) {
-                    if(!mNews.isEmpty()){
-                        mNews.clear();
+                if (response.body() != null && TextUtils.equals("0", response.body().showapi_res_code)) {
+                    List<NewsBody> list = response.body().showapi_res_body.pagebean.contentlist;
+                    viewDelegate.showContent();
+                    if(isRefresh) {
+                        if(!mNews.isEmpty()){
+                            mNews.clear();
+                        }
                     }
+                    mNews.addAll(list);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    failure();
                 }
-                mNews.addAll(list);
-                mAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Throwable t) {
-                viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        netNewsList(true);
-                    }
-                });
+            public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
+                failure();
+            }
+        });
+    }
+
+    private void failure() {
+        viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                netNewsList(true);
             }
         });
     }

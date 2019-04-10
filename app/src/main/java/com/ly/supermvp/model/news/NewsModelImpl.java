@@ -1,17 +1,11 @@
 package com.ly.supermvp.model.news;
 
-import android.text.TextUtils;
-
 import com.ly.supermvp.common.BizInterface;
-import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.ShowApiNews;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.server.RetrofitService;
-import com.orhanobut.logger.Logger;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -29,14 +23,16 @@ public class NewsModelImpl implements NewsModel {
     public static final String CHANNEL_NAME = "国内最新";//频道名称 来自api指定
 
     @Override
-    public void netLoadNewsList(int page, String channelId, String channelName, final OnNetRequestListener listListener) {
+    public Call<ShowApiResponse<ShowApiNews>> netLoadNewsList(int page, String channelId, String channelName) {
         //注意，此处采用Retrofit的官方响应方式，天气预报采用RxJava，学习一下两种用法
         Call<ShowApiResponse<ShowApiNews>> call = RetrofitService.getInstance()
                 .createAPI()
                 .getNewsList(RetrofitService.getCacheControl(), BizInterface.SHOW_API_APPID,
                         BizInterface.SHOW_API_KEY, page, channelId, channelName);
 
-        call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
+        return call;
+
+        /*call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override
             public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
                 Logger.d(response.message() + response.code() + response.body().showapi_res_code
@@ -52,6 +48,6 @@ public class NewsModelImpl implements NewsModel {
             public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
                 listListener.onFailure(t);
             }
-        });
+        });*/
     }
 }
