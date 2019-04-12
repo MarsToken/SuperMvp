@@ -10,9 +10,7 @@ import com.bm.library.PhotoView;
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.utils.GlideUtil;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.Holder;
-import com.orhanobut.dialogplus.ViewHolder;
+import com.rey.material.app.Dialog;
 
 /**
  * <Pre>
@@ -28,7 +26,6 @@ import com.orhanobut.dialogplus.ViewHolder;
 public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate {
     private static final int PRELOAD_SIZE = 6;
     private LinearLayout ll_dialog_holder;//弹窗的布局
-    private DialogPlus mDialog;
 
     private StaggeredGridLayoutManager mGridViewLayoutManager;//recycleview视图样式管理器
 
@@ -81,18 +78,19 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate {
 
 
     public void showDialog(String imgUrl) {
+        final Dialog dialog = new Dialog(getActivity());
         ll_dialog_holder = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_image_preview, null);
-        Holder holder = new ViewHolder(ll_dialog_holder);
-        PhotoView photo_view = (PhotoView) holder.getInflatedView().findViewById(R.id.photo_view);
+        dialog.setContentView(ll_dialog_holder);
+        PhotoView photo_view = (PhotoView) dialog.findViewById(R.id.photo_view);
         photo_view.enable();//启动缩放功能
         GlideUtil.loadImage(getActivity(), imgUrl, photo_view);
         photo_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDialog.dismiss();
+                dialog.dismiss();
             }
         });
-        showOnlyContentDialog(holder, Gravity.TOP, false);
+        dialog.show();
     }
 
     /**
@@ -131,23 +129,5 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate {
 
     public interface FloatingActionButtonListener {
         void onClick(String id);
-    }
-
-    /**
-     * 仅显示内容的dialog
-     *
-     * @param holder
-     * @param gravity  显示位置（居中，底部，顶部）
-     * @param expanded 是否支持展开（有列表时适用）
-     */
-    private void showOnlyContentDialog(Holder holder, int gravity,
-                                       boolean expanded) {
-        mDialog = DialogPlus.newDialog(getActivity())
-                .setContentHolder(holder)
-                .setGravity(gravity)
-                .setExpanded(expanded)
-                .setCancelable(true)
-                .create();
-        mDialog.show();
     }
 }

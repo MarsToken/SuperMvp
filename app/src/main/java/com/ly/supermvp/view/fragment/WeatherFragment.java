@@ -4,13 +4,24 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.ly.supermvp.R;
+import com.ly.supermvp.adapter.WeatherAdapter;
 import com.ly.supermvp.delegate.WeatherFragmentDelegate;
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.OpenApiPicture;
+import com.ly.supermvp.model.entity.OpenApiResponse;
+import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.model.weather.WeatherModel;
 import com.ly.supermvp.model.weather.WeatherModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
+import com.ly.supermvp.server.NetTransformer;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * <Pre>
@@ -31,6 +42,9 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
 
     private WeatherModel mWeatherModel;
 
+    private List<OpenApiWeather.ForecastBean> mForecastBeans = new ArrayList<>();
+    private WeatherAdapter mWeatherAdapter;
+
     public static WeatherFragment newInstance() {
         WeatherFragment fragment = new WeatherFragment();
         return fragment;
@@ -44,7 +58,9 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
     @Override
     protected void initData() {
         super.initData();
-        mWeatherModel = new WeatherModelImpl(bindToLifecycle());
+        mWeatherModel = new WeatherModelImpl();
+        mWeatherAdapter = new WeatherAdapter(mForecastBeans);
+        viewDelegate.initRecyclerView(mWeatherAdapter);
     }
 
     @Override
@@ -61,31 +77,38 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
             viewDelegate.showSnackbar("输入为空");
             return;
         }
-        mWeatherModel.netLoadWeatherWithLocation(viewDelegate.getInputLocation(), NEED_MORE_DAY,
-                NEED_INDEX, NEED_ALARM, NEED_3_HOUR_FORCAST, new OnNetRequestListener<ShowApiWeather>() {
+        mWeatherModel.netGetWeather(viewDelegate.getInputLocation()).compose(
+                new NetTransformer<OpenApiResponse<OpenApiWeather>, OpenApiWeather>(this))
+                .subscribe(new Observer<OpenApiWeather>() {
                     @Override
-                    public void onStart() {
+                    public void onSubscribe(Disposable d) {
                         viewDelegate.showLoading();
                     }
 
                     @Override
-                    public void onFinish() {
+                    public void onNext(OpenApiWeather openApiWeather) {
+                        viewDelegate.showContent();
+                        viewDelegate.closeSoftInput();
+
+                        if (!openApiWeather.getForecast().isEmpty()) {
+                            mForecastBeans.clear();
+                            mForecastBeans.addAll(openApiWeather.getForecast());
+                            mWeatherAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        viewDelegate.showContent();
+                        viewDelegate.showSnackbar("请求错误");
+                    }
+
+                    @Override
+                    public void onComplete() {
                         viewDelegate.showContent();
                     }
-
-                    @Override
-                    public void onSuccess(ShowApiWeather weather) {
-                        Logger.d("onSuccess");
-                        viewDelegate.closeSoftInput();
-                        viewDelegate.showNowWeatherDialog(weather);
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-                        viewDelegate.showSnackbar("请求错误");
-                        Logger.d("onFailure");
-                    }
                 });
+
     }
 
     @Override

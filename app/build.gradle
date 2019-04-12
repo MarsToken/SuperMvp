@@ -47,7 +47,6 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${versions.butterknifeVersion}"
     implementation "com.orhanobut:logger:${versions.loggerVersion}"
     implementation "com.github.rey5137:material:${versions.rey5137MaterialVersion}"
-    implementation "com.orhanobut:dialogplus:1.11@aar"
     implementation "me.imid.swipebacklayout.lib:library:${versions.swipebacklayoutVersion}"
     implementation "com.bm.photoview:library:${versions.photoviewVersion}"
     implementation "com.github.clans:fab:${versions.fabVersion}"
@@ -56,4 +55,5 @@ dependencies {
     implementation "com.trello.rxlifecycle2:rxlifecycle-components:${versions.rxlifecycleVersion}"
     implementation "com.trello.rxlifecycle2:rxlifecycle-components-preference:${versions.rxlifecycleVersion}"
     implementation "com.trello.rxlifecycle2:rxlifecycle-android:${versions.rxlifecycleVersion}"
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseRecyclerViewAdapterHelper}"
 }

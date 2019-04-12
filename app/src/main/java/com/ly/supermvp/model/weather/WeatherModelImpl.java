@@ -1,10 +1,11 @@
 package com.ly.supermvp.model.weather;
 
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.OpenApiResponse;
+import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.server.RetrofitService;
-import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -25,13 +26,6 @@ import io.reactivex.schedulers.Schedulers;
  *          Create by 2016/3/1 14:48
  */
 public class WeatherModelImpl implements WeatherModel {
-
-    private LifecycleTransformer mLifecycleTransformer;
-
-    public WeatherModelImpl(LifecycleTransformer mLifecycleTransformer) {
-        this.mLifecycleTransformer = mLifecycleTransformer;
-    }
-
     @Override
     public void netLoadWeatherWithLocation(String area, String needMoreDay, String needIndex,
                                            String needAlarm, String need3HourForcast,
@@ -43,7 +37,6 @@ public class WeatherModelImpl implements WeatherModel {
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(mLifecycleTransformer)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
@@ -76,5 +69,11 @@ public class WeatherModelImpl implements WeatherModel {
                         }
                     }
                 });
+    }
+
+    @Override
+    public Observable<OpenApiResponse<OpenApiWeather>> netGetWeather(String cityName) {
+        return RetrofitService.getInstance().
+                createAPI().getWeather(RetrofitService.getCacheControl(), "");
     }
 }

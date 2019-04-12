@@ -2,6 +2,7 @@ package com.ly.supermvp.server;
 
 import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.entity.OpenApiResponse;
+import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiNews;
 import com.ly.supermvp.model.entity.OpenApiPicture;
@@ -83,4 +84,9 @@ public interface AllAPI {
                                                            @Query("needAlarm") String needAlarm,
                                                            @Query("need3HourForcast") String need3HourForcast);
 
+    @Headers({BizInterface.DOMAIN + BizInterface.DOMAIN_OPEN_API})
+    @FormUrlEncoded
+    @POST(BizInterface.OPEN_API_WEATHER_URL)
+    Observable<OpenApiResponse<OpenApiWeather>> getWeather(@Header("Cache-Control") String cacheControl,
+                                                           @Field("city") String city);
 }

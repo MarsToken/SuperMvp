@@ -1,6 +1,5 @@
 package com.ly.supermvp.view;
 
-import android.content.Context;
 import android.view.View;
 
 /**
@@ -17,5 +16,4 @@ public interface LoadingView {
     void showLoading();
     void showContent();
     void showError(int messageId, View.OnClickListener listener);
-    Context getContext();
 }

@@ -25,15 +25,22 @@
             app:et_supportMode="charCounter"></com.rey.material.widget.EditText>
 
         <com.rey.material.widget.Button
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/et_location"
             android:id="@+id/bt_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/et_location"
+            android:layout_centerHorizontal="true"
             android:paddingLeft="@dimen/material_16dp"
             android:paddingRight="@dimen/material_16dp"
             android:text="@string/weather_btn"
             app:rd_backgroundColor="@color/colorAccent"
             app:rd_enable="true" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_weather"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/bt_weather"
+            android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
     </com.ly.supermvp.widget.ProgressLayout>
 </LinearLayout>

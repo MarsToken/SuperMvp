@@ -113,6 +113,8 @@ public interface BizInterface {
 
     String OPEN_API_PICTURES_URL = "/getImages";
 
+    String OPEN_API_WEATHER_URL = "/weatherApi";
+
     /**
      * 用于baseurl切换
      */

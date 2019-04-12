@@ -1,7 +1,11 @@
 package com.ly.supermvp.model.weather;
 
 import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.OpenApiResponse;
+import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiWeather;
+
+import io.reactivex.Observable;
 
 /**
  * <Pre>
@@ -25,4 +29,10 @@ public interface WeatherModel {
      */
     void netLoadWeatherWithLocation(String area, String needMoreDay, String needIndex, String needAlarm,
                                     String need3HourForcast, OnNetRequestListener<ShowApiWeather> listener);
+
+    /**
+     * 获取天气预报 openapi
+     * @param cityName
+     */
+    Observable<OpenApiResponse<OpenApiWeather>> netGetWeather(String cityName);
 }

@@ -75,7 +75,7 @@ public class NetTransformer<T extends OpenApiResponse<E>, E> implements Observab
         if (mIsNeedRetry) {
             observable = upstream
                     .subscribeOn(Schedulers.io())
-                    .retryWhen(new RetryWithDelay(3, 2))
+//                    .retryWhen(new RetryWithDelay(3, 2))
                     .observeOn(AndroidSchedulers.mainThread());
         } else {
             observable = upstream

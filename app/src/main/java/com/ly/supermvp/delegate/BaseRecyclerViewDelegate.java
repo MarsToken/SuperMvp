@@ -140,8 +140,4 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements Lo
             progress_layout.showError(messageId, listener);
         }
     }
-    @Override
-    public Context getContext() {
-        return null;
-    }
 }
