@@ -88,8 +88,6 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
                     @Override
                     public void onNext(OpenApiWeather openApiWeather) {
                         viewDelegate.showContent();
-                        viewDelegate.closeSoftInput();
-
                         if (!openApiWeather.getForecast().isEmpty()) {
                             mForecastBeans.clear();
                             mForecastBeans.addAll(openApiWeather.getForecast());

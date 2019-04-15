@@ -65,7 +65,7 @@ public class RetrofitService {
     /**
      * 创建api
      */
-    public static AllAPI createAPI() {
+    public AllAPI createAPI() {
         initOkHttpClient();
         if (mAPI == null) {
             mAPI = new Retrofit.Builder()

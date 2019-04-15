@@ -77,12 +77,14 @@ public class WeatherFragmentDelegate extends AppDelegate implements LoadingView{
     @Override
     public void showContent() {
         if (!mProgressLayout.isContent()) {
+            closeSoftInput();
             mProgressLayout.showContent();
         }
     }
 
     @Override
     public void showError(int messageId, View.OnClickListener listener) {
+        closeSoftInput();
         mProgressLayout.showError(messageId, listener);
     }
 }

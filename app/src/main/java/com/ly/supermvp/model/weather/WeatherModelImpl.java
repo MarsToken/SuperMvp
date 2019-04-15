@@ -1,5 +1,6 @@
 package com.ly.supermvp.model.weather;
 
+import com.ly.supermvp.common.BizInterface;
 import com.ly.supermvp.model.OnNetRequestListener;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.entity.OpenApiWeather;
@@ -13,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 
 /**
@@ -73,7 +75,9 @@ public class WeatherModelImpl implements WeatherModel {
 
     @Override
     public Observable<OpenApiResponse<OpenApiWeather>> netGetWeather(String cityName) {
+        //临时切换baseurl
+        RetrofitUrlManager.getInstance().putDomain(BizInterface.DOMAIN_OPEN_API, BizInterface.OPEN_API);
         return RetrofitService.getInstance().
-                createAPI().getWeather(RetrofitService.getCacheControl(), "");
+                createAPI().getWeather(RetrofitService.getCacheControl(), cityName);
     }
 }
