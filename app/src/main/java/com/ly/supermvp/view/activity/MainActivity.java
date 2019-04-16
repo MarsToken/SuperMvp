@@ -16,6 +16,7 @@ import com.ly.supermvp.adapter.SectionsPagerAdapter;
 import com.ly.supermvp.delegate.MainActivityDelegate;
 import com.ly.supermvp.mvp_frame.presenter.ActivityPresenter;
 import com.ly.supermvp.utils.InputUtil;
+import com.ly.supermvp.utils.ToastUtils;
 import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Field;
@@ -31,6 +32,7 @@ import java.lang.reflect.Field;
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public class MainActivity extends ActivityPresenter<MainActivityDelegate> implements View.OnClickListener {
+    private long mExitTime = 0;
 
     @Override
     protected Class<MainActivityDelegate> getDelegateClass() {
@@ -107,9 +109,21 @@ public class MainActivity extends ActivityPresenter<MainActivityDelegate> implem
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            ToastUtils.showShort("如果觉得有帮助，记得star支持哦~");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mExitTime < 2000) {
+            super.onBackPressed();
+        }else {
+            ToastUtils.showShort("再次按下退出");
+            mExitTime = System.currentTimeMillis();
+        }
+
     }
 }
