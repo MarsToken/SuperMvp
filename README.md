@@ -7,7 +7,7 @@
 - API来自网络免费API（感谢提供api的服务商）
 - MVP模式（使用ViewDelegate解耦，非常感谢**kymjs**提供的mvp思想，在他的基础上我有一些改动，希望能在这个应用上做个最佳实践）
 - leakcanary引入检测内存泄漏
-- Retrofit2（+RxJava2）网络请求
+- Retrofit2（+RxJava2）网络请求，使用retrofit-url-manager处理baseURL的切换问题
 - Glide加载缓存图片（瀑布流卡片显示）
 - 使用RecyclerView展示新闻列表
 
