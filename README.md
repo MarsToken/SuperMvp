@@ -11,6 +11,10 @@
 - Glide加载缓存图片（瀑布流卡片显示）
 - 使用RecyclerView展示新闻列表
 
+## **其他项目**
+[SuperMvp的kotlin语言版本](https://github.com/liuyanggithub/SuperMvp-Kotlin)
+[Kotlin+MVVM+LiveData+Coroutine协程](https://github.com/liuyanggithub/KotlinSuperMvvm)
+
 ## **版本**
 #### V0.9
 - 美图接口更换啦，可以继续看了，找免费接口真是煞费苦心啊(￣▽￣)~*
