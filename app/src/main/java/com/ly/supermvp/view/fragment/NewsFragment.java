@@ -68,11 +68,11 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
             public void onItemClick(View view, int position) {
                 NewsBody item = mNews.get(position);
                 Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-                if((item.imageurls != null && item.imageurls.size() > 0)) {
-                    intent.putExtra(NewsDetailActivity.ARG_NEWS_PIC, item.imageurls.get(0).url);
+                if((item.getImageurls() != null && item.getImageurls().size() > 0)) {
+                    intent.putExtra(NewsDetailActivity.ARG_NEWS_PIC, item.getImageurls().get(0).getUrl());
                 }
-                intent.putExtra(NewsDetailActivity.ARG_NEWS_URL, item.link);
-                intent.putExtra(NewsDetailActivity.ARG_NEWS_TITLE, item.title);
+                intent.putExtra(NewsDetailActivity.ARG_NEWS_URL, item.getLink());
+                intent.putExtra(NewsDetailActivity.ARG_NEWS_TITLE, item.getTitle());
                 startActivity(intent);
             }
         });
@@ -100,11 +100,11 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                 .enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
             @Override
             public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
-                Logger.d(response.message() + response.code() + response.body().showapi_res_code
-                        + response.body().showapi_res_error);
+                Logger.d(response.message() + response.code() + response.body().getShowapi_res_code()
+                        + response.body().getShowapi_res_error());
 
-                if (response.body() != null && TextUtils.equals("0", response.body().showapi_res_code)) {
-                    List<NewsBody> list = response.body().showapi_res_body.pagebean.contentlist;
+                if (response.body() != null && TextUtils.equals("0", response.body().getShowapi_res_code())) {
+                    List<NewsBody> list = response.body().getShowapi_res_body().getPagebean().getContentlist();
                     viewDelegate.showContent();
                     if(isRefresh) {
                         if(!mNews.isEmpty()){

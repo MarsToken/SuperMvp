@@ -86,13 +86,13 @@ public class NewsListAdapter extends RecyclerView.Adapter {
             NewsBody item = newsBodies.get(position);
             ItemViewHolder holder1 = (ItemViewHolder) holder;
 
-            if (item.imageurls != null && item.imageurls.size() > 0) {
-                GlideUtil.loadImage(context, item.imageurls.get(0).url, holder1.imageView);
+            if (item.getImageurls() != null && item.getImageurls().size() > 0) {
+                GlideUtil.loadImage(context, item.getImageurls().get(0).getUrl(), holder1.imageView);
             } else {
                 GlideUtil.loadImage(context, "", holder1.imageView);
             }
-            holder1.desc.setText(item.desc);
-            holder1.title.setText(item.title);
+            holder1.desc.setText(item.getDesc());
+            holder1.title.setText(item.getTitle());
         }
     }
 

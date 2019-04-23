@@ -64,10 +64,10 @@ public class WeatherModelImpl implements WeatherModel {
 
                     @Override
                     public void onNext(ShowApiResponse<ShowApiWeather> showApiWeatherShowApiResponse) {
-                        if(showApiWeatherShowApiResponse.showapi_res_body.now == null){
-                            listener.onFailure(new Exception(showApiWeatherShowApiResponse.showapi_res_code));
+                        if(showApiWeatherShowApiResponse.getShowapi_res_body().getNow() == null){
+                            listener.onFailure(new Exception(showApiWeatherShowApiResponse.getShowapi_res_code()));
                         }else {
-                            listener.onSuccess(showApiWeatherShowApiResponse.showapi_res_body);
+                            listener.onSuccess(showApiWeatherShowApiResponse.getShowapi_res_body());
                         }
                     }
                 });

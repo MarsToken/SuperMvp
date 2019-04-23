@@ -61,10 +61,10 @@ public class NetTransformer<T extends OpenApiResponse<E>, E> implements Observab
             if (t == null)
                 throw new Exception("解析错误");
             if (t.isSuccess()) {
-                return t.result;
+                return t.getResult();
             } else {
                 //服务端自定义的token错误状态码为200
-                throw new Exception(t.message);
+                throw new Exception(t.getMessage());
             }
         }
     };

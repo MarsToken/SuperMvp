@@ -51,9 +51,9 @@ public class PictureGridAdapter extends RecyclerView.Adapter{
         if(holder instanceof ItemViewHolder){
             ItemViewHolder viewHolder = (ItemViewHolder) holder;
 //            PictureBody pictureBody = mList.get(position);
-            String url = mList.get(position).img;
+            String url = mList.get(position).getImg();
             GlideUtil.loadImage(context, url, viewHolder.iv_picture);
-            viewHolder.tv_title.setText(mList.get(position).time);
+            viewHolder.tv_title.setText(mList.get(position).getTime());
         }
     }
 

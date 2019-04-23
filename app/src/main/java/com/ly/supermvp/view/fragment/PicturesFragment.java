@@ -57,7 +57,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         mPictureGridAdapter.setOnImageClickListener(new PictureGridAdapter.OnImageClickListener() {
             @Override
             public void onImageClick(View view, int position) {
-                viewDelegate.showDialog(mList.get(position).img);
+                viewDelegate.showDialog(mList.get(position).getImg());
             }
         });
 
