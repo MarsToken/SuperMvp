@@ -106,3 +106,7 @@ Github地址：https://github.com/liuling07/SimpleNews
 * [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)(从未想过右滑返回可以做得这么简单，非常强大！)
 * [PhotoView](https://github.com/bm-x/PhotoView)(支持旋转的photoview，不过没发现有设置单击图片的回调，直接设置OnclickListener不行，**chrisbanes/PhotoView**提供onPhotoTapListener是可以的)
 
+<div align=center><img width = '300' height ='300' src ="https://img-blog.csdnimg.cn/20190716112834481.jpg"/></div>
+
+<center><font color=gray>聊技术 聊电影 聊人生 什么都聊的公众号</font></center>
+
