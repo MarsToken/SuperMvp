@@ -1,16 +1,16 @@
 package com.ly.supermvp.server;
 
 import com.ly.supermvp.common.BizInterface;
+import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.entity.OpenApiWeather;
-import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiNews;
-import com.ly.supermvp.model.entity.OpenApiPicture;
+import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

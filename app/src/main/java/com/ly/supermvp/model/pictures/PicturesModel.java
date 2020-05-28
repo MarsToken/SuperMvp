@@ -5,7 +5,8 @@ import com.ly.supermvp.model.entity.OpenApiResponse;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 
 /**
  * <Pre>

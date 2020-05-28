@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ly.supermvp.mvp_frame.view.IDelegate;
+import com.trello.rxlifecycle4.components.support.RxFragment;
 
 import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
@@ -35,7 +36,7 @@ import butterknife.Unbinder;
  *@author kymjs (http://www.kymjs.com/) on 10/23/15.
  * @param <T> View delegate class type
  */
-public abstract class FragmentPresenter<T extends IDelegate> extends com.trello.rxlifecycle2.components.support.RxFragment {
+public abstract class FragmentPresenter<T extends IDelegate> extends RxFragment {
     public T viewDelegate;
     private Unbinder mUnbinder;
 

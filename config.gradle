@@ -8,10 +8,10 @@ ext {
             'minSdk'                       : 21,
             'targetSdk'                    : 28,
             'androidSupportVersion'        : '28.+',
-            'retrofitVersion'              : '2.5.0',
+            'retrofitVersion'              : '2.9.0',
             'leakcanaryVersion'            : '1.5.4',
-            'rxandroidVersion'             : '2.0.1',
-            'rxjavaVersion'                : '2.1.9',
+            'rxandroidVersion'             : '3.0.0',
+            'rxjavaVersion'                : '3.0.0',
             'rxbindingVersion'             : '4.0.0',
             'glideVersion'                 : '4.11.0',
             'butterknifeVersion'           : '10.2.1',
@@ -21,7 +21,7 @@ ext {
             'photoviewVersion'             : '1.3.6',
             'fabVersion'                   : '1.6.2',
             'retrofitManagerVersion'       : '1.4.0',
-            'rxlifecycleVersion'           : '2.2.2',
+            'rxlifecycleVersion'           : '4.0.0',
             'baseRecyclerViewAdapterHelper': '2.9.40'
     ]
 }

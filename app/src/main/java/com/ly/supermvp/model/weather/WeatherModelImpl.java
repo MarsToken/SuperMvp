@@ -8,12 +8,12 @@ import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.server.RetrofitService;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 

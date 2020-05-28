@@ -6,22 +6,19 @@ import android.view.View;
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.WeatherAdapter;
 import com.ly.supermvp.delegate.WeatherFragmentDelegate;
-import com.ly.supermvp.model.OnNetRequestListener;
-import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.entity.OpenApiWeather;
-import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.model.weather.WeatherModel;
 import com.ly.supermvp.model.weather.WeatherModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
 import com.ly.supermvp.server.NetTransformer;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 
 /**
  * <Pre>

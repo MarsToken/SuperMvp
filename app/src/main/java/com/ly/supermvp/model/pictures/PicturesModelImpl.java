@@ -7,7 +7,7 @@ import com.ly.supermvp.server.RetrofitService;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 
