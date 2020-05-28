@@ -14,6 +14,7 @@ import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.news.NewsModel;
 import com.ly.supermvp.model.news.NewsModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
+import com.ly.supermvp.utils.ToastUtils;
 import com.ly.supermvp.view.activity.NewsDetailActivity;
 import com.orhanobut.logger.Logger;
 
@@ -114,18 +115,21 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                     mNews.addAll(list);
                     mAdapter.notifyDataSetChanged();
                 } else {
-                    failure();
+                    failure(response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
-                failure();
+                failure(null);
             }
         });
     }
 
-    private void failure() {
+    private void failure(ShowApiResponse<ShowApiNews> response) {
+        if (response != null) {
+            ToastUtils.showShort(response.getShowapi_res_error());
+        }
         viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
