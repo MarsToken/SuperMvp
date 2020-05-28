@@ -17,15 +17,15 @@ package com.ly.supermvp.mvp_frame.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.ly.supermvp.utils.ToastUtils;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

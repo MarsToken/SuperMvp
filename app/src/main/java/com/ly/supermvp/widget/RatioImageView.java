@@ -1,5 +1,6 @@
 package com.ly.supermvp.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
  *          Create by 2016/2/29 17:43
  * @see https://github.com/liuyanggithub/SuperMvp
  */
+@SuppressLint("AppCompatCustomView")
 public class RatioImageView extends ImageView {
 
     private int originalWidth;

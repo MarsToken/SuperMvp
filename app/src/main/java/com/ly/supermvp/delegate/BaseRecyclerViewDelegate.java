@@ -1,13 +1,10 @@
 package com.ly.supermvp.delegate;
 
-import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
+import com.jakewharton.rxbinding4.swiperefreshlayout.RxSwipeRefreshLayout;
 import com.ly.supermvp.R;
 import com.ly.supermvp.common.Constants;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
@@ -17,8 +14,10 @@ import com.ly.supermvp.widget.ProgressLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
-import io.reactivex.functions.Consumer;
+import kotlin.Unit;
 
 /**
  * <Pre>
@@ -107,10 +106,9 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements Lo
      * @param callBack 下拉刷新的回调接口
      */
     public void registerSwipeRefreshCallBack(final SwipeRefreshAndLoadMoreCallBack callBack) {
-        RxSwipeRefreshLayout.refreshes(swipe_refresh_layout).subscribe(new Consumer<Object>() {
+        RxSwipeRefreshLayout.refreshes(swipe_refresh_layout).subscribe(new io.reactivex.rxjava3.functions.Consumer<Unit>() {
             @Override
-            public void accept(Object o) throws Exception {
-                // 2016/2/29 调用fragment的方法加载数据，需要解耦(已用接口解决)
+            public void accept(Unit unit) throws Throwable {
                 callBack.refresh();
             }
         });

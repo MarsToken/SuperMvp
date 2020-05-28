@@ -1,8 +1,6 @@
 package com.ly.supermvp.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,9 @@ import com.ly.supermvp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 /**
  * 加载视图视图控件

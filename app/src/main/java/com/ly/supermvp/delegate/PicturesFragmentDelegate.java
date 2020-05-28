@@ -1,8 +1,6 @@
 package com.ly.supermvp.delegate;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.Gravity;
+
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -11,6 +9,9 @@ import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.utils.GlideUtil;
 import com.rey.material.app.Dialog;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * <Pre>

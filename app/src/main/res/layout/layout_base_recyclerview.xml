@@ -8,21 +8,21 @@
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/primary_background_color"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/material_16dp"
-                android:paddingTop="@dimen/material_16dp"></android.support.v7.widget.RecyclerView>
+                android:paddingTop="@dimen/material_16dp"></androidx.recyclerview.widget.RecyclerView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </com.ly.supermvp.widget.ProgressLayout>
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_action_menu"

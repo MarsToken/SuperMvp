@@ -1,11 +1,12 @@
 package com.ly.supermvp.delegate;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.ly.supermvp.adapter.NewsListAdapter;
 import com.ly.supermvp.view.LoadingView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * <Pre>

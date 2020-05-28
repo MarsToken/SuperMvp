@@ -1,24 +1,18 @@
 package com.ly.supermvp.delegate;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.WeatherAdapter;
-import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
-import com.ly.supermvp.utils.GlideUtil;
 import com.ly.supermvp.view.LoadingView;
 import com.ly.supermvp.widget.ProgressLayout;
 import com.rey.material.widget.EditText;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 /**

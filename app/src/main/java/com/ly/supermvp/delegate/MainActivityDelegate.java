@@ -1,12 +1,12 @@
 package com.ly.supermvp.delegate;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.ly.supermvp.R;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
 
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 /**

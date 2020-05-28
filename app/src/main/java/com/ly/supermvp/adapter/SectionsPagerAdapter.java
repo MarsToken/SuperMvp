@@ -1,14 +1,15 @@
 package com.ly.supermvp.adapter;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ly.supermvp.R;
 import com.ly.supermvp.view.fragment.NewsFragment;
 import com.ly.supermvp.view.fragment.PicturesFragment;
 import com.ly.supermvp.view.fragment.WeatherFragment;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * <Pre>

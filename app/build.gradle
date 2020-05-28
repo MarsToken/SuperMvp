@@ -11,6 +11,11 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -21,11 +26,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
+//    testImplementation 'junit:junit:4.12'
     /*Google library*/
-    implementation "com.android.support:appcompat-v7:${versions.androidSupportVersion}"
-    implementation "com.android.support:design:${versions.androidSupportVersion}"
-    implementation "com.android.support:support-v13:${versions.androidSupportVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     /*squareup library*/
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofitVersion}"
@@ -36,11 +41,17 @@ dependencies {
     /*rx library*/
     implementation "io.reactivex.rxjava2:rxandroid:${versions.rxandroidVersion}"
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxjavaVersion}"
-    implementation "com.jakewharton.rxbinding2:rxbinding:${versions.rxbindingVersion}"
-    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:${versions.rxbindingVersion}"
-    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${versions.rxbindingVersion}"
-    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${versions.rxbindingVersion}"
-    implementation "com.jakewharton.rxbinding2:rxbinding-design:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-core:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-appcompat:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-drawerlayout:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-leanback:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-recyclerview:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-slidingpanelayout:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-viewpager:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-viewpager2:${versions.rxbindingVersion}"
+    implementation "com.jakewharton.rxbinding4:rxbinding-material:${versions.rxbindingVersion}"
     /*other library*/
     implementation "com.github.bumptech.glide:glide:${versions.glideVersion}"
     implementation "com.jakewharton:butterknife:${versions.butterknifeVersion}"

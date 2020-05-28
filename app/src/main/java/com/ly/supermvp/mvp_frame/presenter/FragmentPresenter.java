@@ -16,7 +16,6 @@
 package com.ly.supermvp.mvp_frame.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +24,7 @@ import android.view.ViewGroup;
 
 import com.ly.supermvp.mvp_frame.view.IDelegate;
 
+import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

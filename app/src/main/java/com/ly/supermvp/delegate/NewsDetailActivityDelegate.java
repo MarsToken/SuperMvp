@@ -1,19 +1,19 @@
 package com.ly.supermvp.delegate;
 
 import android.graphics.Bitmap;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.ly.supermvp.R;
 import com.ly.supermvp.mvp_frame.view.AppDelegate;
 import com.ly.supermvp.utils.GlideUtil;
 import com.rey.material.widget.ProgressView;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 
 /**
@@ -84,7 +84,7 @@ public class NewsDetailActivityDelegate extends AppDelegate{
     }
 
     @Override
-    public android.support.v7.widget.Toolbar getToolbar() {
+    public androidx.appcompat.widget.Toolbar getToolbar() {
         return mToolbar;
     }
 

@@ -1,25 +1,19 @@
 package com.ly.supermvp.view.activity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.SectionsPagerAdapter;
 import com.ly.supermvp.delegate.MainActivityDelegate;
 import com.ly.supermvp.mvp_frame.presenter.ActivityPresenter;
 import com.ly.supermvp.utils.InputUtil;
 import com.ly.supermvp.utils.ToastUtils;
-import com.orhanobut.logger.Logger;
 
-import java.lang.reflect.Field;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * <Pre>
@@ -39,19 +33,8 @@ public class MainActivity extends ActivityPresenter<MainActivityDelegate> implem
         return MainActivityDelegate.class;
     }
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

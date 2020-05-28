@@ -1,6 +1,5 @@
 package com.ly.supermvp.adapter;
 
-import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -8,6 +7,8 @@ import com.ly.supermvp.R;
 import com.ly.supermvp.model.entity.OpenApiWeather;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * <Pre>
