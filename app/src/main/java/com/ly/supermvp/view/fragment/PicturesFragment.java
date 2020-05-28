@@ -6,18 +6,14 @@ import com.ly.supermvp.R;
 import com.ly.supermvp.adapter.PictureGridAdapter;
 import com.ly.supermvp.delegate.PicturesFragmentDelegate;
 import com.ly.supermvp.delegate.SwipeRefreshAndLoadMoreCallBack;
-import com.ly.supermvp.model.entity.OpenApiPicture;
-import com.ly.supermvp.model.entity.OpenApiResponse;
+import com.ly.supermvp.model.OnNetRequestListener;
+import com.ly.supermvp.model.entity.PictureBody;
 import com.ly.supermvp.model.pictures.PicturesModel;
 import com.ly.supermvp.model.pictures.PicturesModelImpl;
 import com.ly.supermvp.mvp_frame.presenter.FragmentPresenter;
-import com.ly.supermvp.server.NetTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 
 /**
@@ -27,8 +23,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
  *
  * @author 刘阳
  * @version 1.0
- *          <p/>
- *          Create by 2016/3/21 14:39
+ * <p/>
+ * Create by 2016/3/21 14:39
  * @see https://github.com/liuyanggithub/SuperMvp
  */
 public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate> implements SwipeRefreshAndLoadMoreCallBack, PicturesFragmentDelegate.FloatingActionButtonListener {
@@ -36,9 +32,9 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     private PictureGridAdapter mPictureGridAdapter;
 
     private int mPageNum = 1;
-    private String mPictureId = "";
+    private String mPictureId = PicturesModel.DEFAULT_TYPE;
 
-    private List<OpenApiPicture> mList = new ArrayList<>();
+    private List<PictureBody> mList = new ArrayList<>();
 
     public static PicturesFragment newInstance() {
         PicturesFragment fragment = new PicturesFragment();
@@ -58,7 +54,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         mPictureGridAdapter.setOnImageClickListener(new PictureGridAdapter.OnImageClickListener() {
             @Override
             public void onImageClick(View view, int position) {
-                viewDelegate.showDialog(mList.get(position).getImg());
+                viewDelegate.showDialog(mList.get(position).getList().get(0).getBig());
             }
         });
 
@@ -88,7 +84,40 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
             mPageNum++;
         }
 
-        mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20).compose(
+        mPicturesModel.netLoadPictures(id, mPageNum, new OnNetRequestListener<List<PictureBody>>() {
+            @Override
+            public void onStart() {
+                viewDelegate.showRefreshLayout();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onSuccess(List<PictureBody> data) {
+                viewDelegate.showContent();
+                if (isRefresh) {
+                    if (!mList.isEmpty()) {
+                        mList.clear();
+                    }
+                }
+                mList.addAll(data);
+                mPictureGridAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        netLoadPictures(mPictureId, true);
+                    }
+                });
+            }
+        });
+        /*mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20).compose(
                 new NetTransformer<OpenApiResponse<List<OpenApiPicture>>, List<OpenApiPicture>>(this))
                 .subscribe(new Observer<List<OpenApiPicture>>() {
                     @Override
@@ -122,7 +151,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                     public void onComplete() {
 
                     }
-                });
+                });*/
 
         /*mPicturesModel.netLoadPicturesByOpenApi(mPageNum, 20, new OnNetRequestListener<List<OpenApiPicture>>() {
             @Override

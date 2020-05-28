@@ -22,7 +22,7 @@ public interface BizInterface {
     /**
      * 易源API接口（官方）
      */
-    String SHOW_API = "http://route.showapi.com";
+    String SHOW_API = "https://route.showapi.com";
     /**
      * 百度开发者API密钥
      */
@@ -109,7 +109,7 @@ public interface BizInterface {
      ],
      服务商： 易源接口
      */
-    String PICTURES_URL = "/showapi_open_bus/pic/pic_search";
+    String PICTURES_URL = "/852-2";
 
     String OPEN_API_PICTURES_URL = "/getImages";
 

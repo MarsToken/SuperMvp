@@ -5,6 +5,7 @@ import com.ly.supermvp.model.entity.OpenApiPicture;
 import com.ly.supermvp.model.entity.OpenApiResponse;
 import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiNews;
+import com.ly.supermvp.model.entity.ShowApiPictures;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 
@@ -28,19 +29,20 @@ import retrofit2.http.Query;
  *
  * @author 刘阳
  * @version 1.0
- *          <p>
- *          Create by 2017/1/18 15:41
+ * <p>
+ * Create by 2017/1/18 15:41
  */
 
 public interface AllAPI {
     /**
      * 新闻列表
+     *
      * @param cacheControl 缓存控制
-     * @param appId 易源appid
-     * @param key 易源密钥
-     * @param page 页数
-     * @param channelId 频道id
-     * @param channelName 名称
+     * @param appId        易源appid
+     * @param key          易源密钥
+     * @param page         页数
+     * @param channelId    频道id
+     * @param channelName  名称
      * @return
      */
     @GET(BizInterface.NEWS_URL)
@@ -55,7 +57,8 @@ public interface AllAPI {
 
     /**
      * 美图大全
-     * @param page 页数
+     *
+     * @param page  页数
      * @param count 每页请求数目
      * @return
      */
@@ -67,11 +70,24 @@ public interface AllAPI {
                                                                   @Field("count") int count);
 
     /**
+     * 易源美图大全
+     * @return
+     */
+    @GET(BizInterface.PICTURES_URL)
+    @Headers({"apikey: " + BizInterface.API_KEY, BizInterface.DOMAIN + BizInterface.DOMAIN_SHOW_API})
+    Observable<ShowApiResponse<ShowApiPictures>> getShowApiPictures(@Header("Cache-Control") String cacheControl,
+                                                                    @Query("showapi_appid") String appId,
+                                                                    @Query("showapi_sign") String key,
+                                                                    @Query("type") String type,
+                                                                    @Query("page") int count);
+
+    /**
      * 天气预报
-     * @param area 地区名称，比如北京
-     * @param needMoreDay 是否需要返回7天数据中的后4天。1为返回，0为不返回。
-     * @param needIndex 是否需要返回指数数据，比如穿衣指数、紫外线指数等。1为返回，0为不返回。
-     * @param needAlarm 是否需要天气预警。1为需要，0为不需要。
+     *
+     * @param area             地区名称，比如北京
+     * @param needMoreDay      是否需要返回7天数据中的后4天。1为返回，0为不返回。
+     * @param needIndex        是否需要返回指数数据，比如穿衣指数、紫外线指数等。1为返回，0为不返回。
+     * @param needAlarm        是否需要天气预警。1为需要，0为不需要。
      * @param need3HourForcast 是否需要当天每3小时1次的天气预报列表。1为需要，0为不需要。
      * @return
      */

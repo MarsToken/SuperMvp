@@ -40,7 +40,7 @@ public class PicturesFragmentDelegate extends BaseRecyclerViewDelegate {
 
     @Override
     boolean setFloatingActionMenuVisible() {
-        return false;
+        return true;
     }
 
     /**

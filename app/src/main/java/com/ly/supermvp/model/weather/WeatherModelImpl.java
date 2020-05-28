@@ -7,6 +7,7 @@ import com.ly.supermvp.model.entity.OpenApiWeather;
 import com.ly.supermvp.model.entity.ShowApiResponse;
 import com.ly.supermvp.model.entity.ShowApiWeather;
 import com.ly.supermvp.server.RetrofitService;
+import com.ly.supermvp.utils.ToastUtils;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -65,6 +66,7 @@ public class WeatherModelImpl implements WeatherModel {
                     @Override
                     public void onNext(ShowApiResponse<ShowApiWeather> showApiWeatherShowApiResponse) {
                         if(showApiWeatherShowApiResponse.getShowapi_res_body().getNow() == null){
+                            ToastUtils.showShort(showApiWeatherShowApiResponse.getShowapi_res_error());
                             listener.onFailure(new Exception(showApiWeatherShowApiResponse.getShowapi_res_code()));
                         }else {
                             listener.onSuccess(showApiWeatherShowApiResponse.getShowapi_res_body());
