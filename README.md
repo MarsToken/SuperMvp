@@ -8,7 +8,7 @@
 - API来自网络免费API（感谢提供api的服务商）
 - MVP模式（使用ViewDelegate解耦，非常感谢**kymjs**提供的mvp思想，在他的基础上我有一些改动，希望能在这个应用上做个最佳实践）
 - leakcanary引入检测内存泄漏
-- Retrofit2（+RxJava2）网络请求，使用retrofit-url-manager处理baseURL的切换问题
+- Retrofit2（+RxJava3）网络请求，使用retrofit-url-manager处理baseURL的切换问题
 - Glide加载缓存图片（瀑布流卡片显示）
 - 使用RecyclerView展示新闻列表
 
@@ -21,6 +21,7 @@
 #### V0.9.1
 - 升级android X
 - 升级 rxjava3(rxandroid3) rxlifecycle4 glide4 butterknife10等
+- 处理baseURL的切换问题
 #### V0.9
 - 美图接口更换啦，可以继续看了，找免费接口真是煞费苦心啊(￣▽￣)~*
 - 后期会对这个项目做一些优化，包括框架的修改和网络请求的二次封装，并且加入一些新的模块
